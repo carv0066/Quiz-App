@@ -32,7 +32,7 @@ body {
     padding: 5px 0px;
 }
 
-.answers {
+.buttons {
     background: #f0f0f0;
     border: none;
     font: inherit;
@@ -43,12 +43,12 @@ body {
     font-size: 16px;
 }
 
-.answers:hover {
+.buttons:hover {
     background-color: #1919703f;
     transition: 0.3s;
 }
 
-.answers:active {
+.buttons:active {
     background-color: #1919706f;
 }
 
