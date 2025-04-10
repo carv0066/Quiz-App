@@ -3,6 +3,7 @@ const incorrect = document.querySelectorAll(".incorrect");
 const correct = document.querySelector(".correct");
 const buttons = document.querySelectorAll(".buttons");
 const answersList = document.querySelector(".answer-list");
+const nextBtn = document.querySelector(".next");
 
 //Fetch the data from an API
 const apiUrl = "https://opentdb.com/api.php?amount=10";
@@ -48,36 +49,42 @@ fetchQuestions().then(quizInfo => {
         console.log("Randomized Array:", buttonsArray);
         // Clear the placeholder answers
         answersList.innerHTML = "";
+        //After Clicking on one answer it should not let me click any other option
+        let clickCounter = 0;
         buttonsArray.forEach(button => {
             //Grab list of answers and append new random answers to it
-            // console.log("Is:",button)
             answersList.append(button)
 
             button.addEventListener('click', () => {
-                if (button.classList.contains("incorrect")) {
+                if (button.classList.contains("incorrect") && clickCounter < 1) {
                     console.log("the answers is wrong!!!!!!")
                     button.style.backgroundColor = "#FFB7C3";
-
-                } else {
+                    clickCounter++;
+                    nextBtn.classList.toggle("nextdis");
+                    nextBtn.disabled = false;
+                } else if (button.classList.contains("correct") && clickCounter < 1) {
                     console.log("The answer is correct!!!!")
                     button.style.backgroundColor = "#B4EBCA";
+                    clickCounter++;
+                    nextBtn.classList.toggle("nextdis");
+                    nextBtn.disabled = false;
                 }
-
-                //After Clicking on one answer it should not let me click any other option
             })
         })
     }
     randomAnswers();
 })
 
-
-//Next Button should only be clickable after answering question
 //After clicking on next button It should send me to the next question
+//The number of the question should update after clicking the next button
+
+
 
 
 //Each answer should be stored till the end
 //Add the type of question and make it so its never a true or false question
 //Add a next button where the question would change when clicked
 //next button only activates after answering question
+//Ony multiple choice question, not true or false
 //do 5 questions
 //Process, read.me 

@@ -52,11 +52,6 @@ body {
     background-color: #1919706f;
 }
 
-.correct::after {
-
-}
-
-
 /* Next Question btn Styles */
 .next {
     background: #191970;
@@ -69,4 +64,9 @@ body {
     border-radius: 5px;
     font-size: 16px;
     font-weight: 500;
+}
+
+.nextdis {
+    background-color: #BCC4DB;
+    color: #a1a5b0;
 }
