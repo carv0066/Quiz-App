@@ -52,6 +52,10 @@ body {
     background-color: #1919706f;
 }
 
+.correct::after {
+
+}
+
 
 /* Next Question btn Styles */
 .next {

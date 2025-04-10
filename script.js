@@ -25,59 +25,56 @@ fetchQuestions().then(quizInfo => {
 
     incorrect.forEach(wrong => {
         //Loop trough the wrong answers and Log each answer in a separate button
-        wrong.textContent = quizInfo.results[0].incorrect_answers;
+        wrong.textContent = quizInfo.results[0].incorrect_answers.shift();
 
     })
     correct.textContent = quizInfo.results[0].correct_answer;
 
     let buttonsArray = Array.from(buttons);
-    console.log("Array", buttonsArray);
+    console.log("Not Random Array:", buttons);
 
-function randomAnswers() {
-    let i = buttonsArray.length, j, temp;
+    function randomAnswers() {
+        let i = buttonsArray.length,
+            j, temp;
 
-    while(--i > 0) {
-        // Get random number ranging between 0 and i
-        j = Math.floor(Math.random() * (i+1));
-    
-        temp = buttonsArray[j];
-        buttonsArray[j] = buttonsArray[i];
-        buttonsArray[i] = temp;
-    }
-        // Append items from the randomized array into the list, I know I can use map instead of forEach
-        console.log("Array Modified:",buttonsArray);
-        buttonsArray.map(button => {
-            button.remove();
+        while (--i > 0) {
+            // Get random number ranging between 0 and i
+            j = Math.floor(Math.random() * (i + 1));
 
-
-            const newBtn = document.createElement("button");
-            newBtn.classList.add("buttons");
-            const btnText = document.createTextNode(button.textContent);
-            newBtn.appendChild(btnText);
-            answersList.appendChild(newBtn);
-
-            console.log("Is:",button)
-            console.log("are:", buttons[0])
-        })
-}
-randomAnswers();
-// when Clicking on an answer it should tell me the correct and incorrect one
-//don't select it with the query selector but select it from the class
-buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        if(btn.classList.contains("buttons")) {
-            console.log("the answers is wrong!!!!!!")
-        } else {
-            console.log("The answer is correct!!!!")
+            temp = buttonsArray[j];
+            buttonsArray[j] = buttonsArray[i];
+            buttonsArray[i] = temp;
         }
-    })
+        console.log("Randomized Array:", buttonsArray);
+        // Clear the placeholder answers
+        answersList.innerHTML = "";
+        buttonsArray.forEach(button => {
+            //Grab list of answers and append new random answers to it
+            // console.log("Is:",button)
+            answersList.append(button)
+
+            button.addEventListener('click', () => {
+                if (button.classList.contains("incorrect")) {
+                    console.log("the answers is wrong!!!!!!")
+                    button.style.backgroundColor = "#FFB7C3";
+
+                } else {
+                    console.log("The answer is correct!!!!")
+                    button.style.backgroundColor = "#B4EBCA";
+                }
+
+                //After Clicking on one answer it should not let me click any other option
+            })
+        })
+    }
+    randomAnswers();
 })
 
-})
-//When clicking on right answer it should turn green
-//When clicking on wrong answer it should turn red, and the right answer green
 
-//Answer can only be clicked once
+//Next Button should only be clickable after answering question
+//After clicking on next button It should send me to the next question
+
+
 //Each answer should be stored till the end
 //Add the type of question and make it so its never a true or false question
 //Add a next button where the question would change when clicked
