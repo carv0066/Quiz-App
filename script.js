@@ -21,15 +21,22 @@ async function fetchQuestions() {
 fetchQuestions().then(quizInfo => {
     //Quiz data is the same as the info
     console.log("Data is", quizInfo)
-    console.log("Question is:", quizInfo.results[0].question);
-    question.textContent = quizInfo.results[0].question;
+    //Loop trough the questions in the result array
 
-    incorrect.forEach(wrong => {
-        //Loop trough the wrong answers and Log each answer in a separate button
-        wrong.textContent = quizInfo.results[0].incorrect_answers.shift();
+    for(q in quizInfo.results) {
+        console.log("these are the questions", quizInfo.results[q])
+        //replace the index with q for the questions and when clicking next it should move unto the next one
+        question.textContent = quizInfo.results[q].question;
+        incorrect.forEach(wrong => {
+            //Loop trough the wrong answers and Log each answer in a separate button
+            wrong.textContent = quizInfo.results[q].incorrect_answers.shift();
+        })
+        correct.textContent = quizInfo.results[q].correct_answer;
 
-    })
-    correct.textContent = quizInfo.results[0].correct_answer;
+        //Currently is looping by itself in the console and the question that shows up is the one on index 9,
+        // the index should only loop after I click on the next button
+        console.log("q is equal to:", q)
+    }
 
     let buttonsArray = Array.from(buttons);
     console.log("Not Random Array:", buttons);
@@ -75,16 +82,15 @@ fetchQuestions().then(quizInfo => {
     randomAnswers();
 })
 
-//After clicking on next button It should send me to the next question
+
+
+////After clicking on next button It should send me to the next question
+//Learn to save the answers for each question to check result at the end
+//No boolean questions(true or false)
+//remove true or false questions from it
+
+//Make it so that after clicking on an answer, im not allowed to click the other buttons 
 //The number of the question should update after clicking the next button
-
-
-
-
-//Each answer should be stored till the end
-//Add the type of question and make it so its never a true or false question
-//Add a next button where the question would change when clicked
-//next button only activates after answering question
-//Ony multiple choice question, not true or false
-//do 5 questions
+//find the &quot error, why it shows like that
 //Process, read.me 
+
