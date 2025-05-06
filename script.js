@@ -21,21 +21,27 @@ async function fetchQuestions() {
 fetchQuestions().then(quizInfo => {
     //Quiz data is the same as the info
     console.log("Data is", quizInfo)
-    //Loop trough the questions in the result array
+    // Loop trough the questions in the result array
+    // Make it Loop once, then after clicking on next button loop trough it again
+    let questionLooped = false;
 
-    for(q in quizInfo.results) {
-        console.log("these are the questions", quizInfo.results[q])
-        //replace the index with q for the questions and when clicking next it should move unto the next one
-        question.textContent = quizInfo.results[q].question;
-        incorrect.forEach(wrong => {
-            //Loop trough the wrong answers and Log each answer in a separate button
-            wrong.textContent = quizInfo.results[q].incorrect_answers.shift();
-        })
-        correct.textContent = quizInfo.results[q].correct_answer;
+    for (q in quizInfo.results) {
+        if (questionLooped === false) {
+            console.log("these are the questions", quizInfo.results[q]);
+            //replace the index with q for the questions and when clicking next it should move unto the next one
+            question.textContent = quizInfo.results[q].question;
+            incorrect.forEach(wrong => {
+                //Loop trough the wrong answers and Log each answer in a separate button
+                wrong.textContent = quizInfo.results[q].incorrect_answers.shift();
+            })
+            correct.textContent = quizInfo.results[q].correct_answer;
+            questionLooped = true;
 
-        //Currently is looping by itself in the console and the question that shows up is the one on index 9,
-        // the index should only loop after I click on the next button
-        console.log("q is equal to:", q)
+            //Check the question Looped, Once i click next it should move on to the next question
+            //If click loop again and move unto the next question on the
+            nextBtn.addEventListener("click", ()=> {
+            })
+        }
     }
 
     let buttonsArray = Array.from(buttons);
@@ -93,4 +99,3 @@ fetchQuestions().then(quizInfo => {
 //The number of the question should update after clicking the next button
 //find the &quot error, why it shows like that
 //Process, read.me 
-
