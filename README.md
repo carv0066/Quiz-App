@@ -6,8 +6,6 @@
 
 - Score tracking
 
-- Instant feedback on answers
-
 - Responsive design for mobile and desktop
 
 
