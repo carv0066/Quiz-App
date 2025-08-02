@@ -1,6 +1,6 @@
 # Quiz-App
 
-## 🚀 Features
+## Features
 
 - Multiple-choice questions
 
@@ -9,6 +9,6 @@
 - Responsive design for mobile and desktop
 
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Frontend:** HTML, CSS, JavaScript
